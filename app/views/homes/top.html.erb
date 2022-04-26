@@ -1,3 +1,11 @@
-<h1>TOPページ</h1>
-<%= link_to "サインアップ",  new_user_registration_path %>
-<%= link_to "ログイン",  new_user_session_path , class: "btn btn-primary" %>
+<div class="text-center">
+ <h1 class="mb-2">TOPページ</h1>
+  <% if user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "btn btn-outline-secondary"%>
+  <% else %>
+    <p>アカウントをお持ちでない方は</p>
+    <%= link_to "サインアップ",  new_user_registration_path, class: "btn btn-outline-success mb-2" %><br>
+    <p> アカウントをお持ちの方は</p>
+    <%= link_to "ログイン",  new_user_session_path , class: "btn btn-outline-primary" %>
+  <% end %>
+</div>
