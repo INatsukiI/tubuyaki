@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @article = Article.new
+    @articles = Article.all
   end
 
   def create
@@ -9,10 +10,16 @@ class ArticlesController < ApplicationController
 
     if @article.save
       flash[:notice] = "You have created book successfully."
-      redirect_to article_path
+      redirect_to articles_path
     else
       render :index
     end
+  end
+
+  def destroy
+    article = Article.find(params[:id])
+    article.destroy
+    redirect_to articles_path
   end
 
   private
