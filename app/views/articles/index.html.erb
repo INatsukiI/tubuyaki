@@ -1,40 +1,54 @@
-<div class="container p-2">
+<div class="container px-2 pb-2">
   <div class="row">
     <div class="col-2 border-right border-secondary">
-      Column
-    </div>
-    <div class="col">
-      <div class="border-bottom border-secondary">
-        <h3>ホーム</h3>
-        <%= form_with model: @article do |f| %>
-          <div class="form-group">
-            <label for="article_title">Title</label><br>
-            <%= f.text_field :title ,class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <label for="article_content">Content</label><br>
-            <%= f.text_area :content ,class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit "つぶやく" ,class: "btn btn-primary" %>
-          </div>
-        <% end %>
-      </div>
-      <div>
-        <table>
-          <% @articles.each do |article| %>
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td><%= article.content %></td>
-              <td>
-                <% if user_signed_in? %>
-                  <%= link_to "削除", article_path(article), method: :delete %>
-                <% end %>
-              </td>
-            </tr>
+      <div class="text-right">
+          <%= link_to  articles_path do %>
+            <i class="fa-solid fa-t p-3 " style="height: 25px; width: 25px;"></i>
           <% end %>
-        </table>
+          <br>
+          <%= link_to  articles_path do %>
+            <i class="fa-solid fa-house p-3" style="height: 25px; width: 25px;"></i>
+          <% end %>
+      </div>
+    </div>
+    <div class="col-7 p-0">
+      <div class="border-bottom border-secondary">
+        <div class="p-4">
+          <h3>ホーム</h3>
+          <%= form_with model: @article do |f| %>
+            <div class="d-flex bd-highlight">
+              <div class="pr-2">
+                プロフィール画像
+              </div>
+              <div class="form-group w-100">
+                <%= f.text_area :content ,class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <%= f.submit "つぶやく" ,class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col p-2">
+          <% @articles.each do |article| %>
+            <div class="d-flex flex-row border border-2 rounded-2">
+              <div class="pr-2">
+                プロフィール画像
+              </div>
+              <div class="d-flex flex-column">
+                <div>名前</div>
+                <div><%= article.content %></div>
+                <div>
+                  <% if user_signed_in? %>
+                    <%= link_to article_path(article), method: :delete do %>
+                      <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
       </div>
 
     </div>
