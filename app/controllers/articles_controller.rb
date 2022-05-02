@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    #@book.user_id = current_user.id
+    @article.user_id = current_user.id
 
     if @article.save
       flash[:notice] = "You have created book successfully."
