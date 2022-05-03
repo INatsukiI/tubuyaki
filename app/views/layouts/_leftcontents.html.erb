@@ -1,0 +1,19 @@
+<div class="col-2">
+  <div class="text-right">
+    <%= link_to  articles_path do %>
+      <i class="fa-solid fa-t p-3 " style="height: 25px; width: 25px;"></i>
+    <% end %>
+    <br>
+    <%= link_to  articles_path do %>
+      <i class="fa-solid fa-house p-3" style="height: 25px; width: 25px;"></i>
+    <% end %>
+    <br>
+    <%= link_to  articles_path do %>
+      <i class="fa-solid fa-user p-3" style="height: 25px; width: 25px;"></i>
+    <% end %>
+    <br>
+    <div style="height: 100px; width: 25px;"></div>
+    <br>
+    <%= link_to image_tag(current_user.get_profile_image(30,30)),user_path(current_user) , class: "p-3",style: "width: 57px; height: 57px;" %>
+  </div>
+</div>
