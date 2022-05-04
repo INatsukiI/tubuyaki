@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
   def index
     @article = Article.new
-    @articles = Article.all
+    @articles = Article.all.order("created_at DESC")
+  end
+
+  def show
+    @article = Article.find(params[:id])
   end
 
   def create
@@ -12,6 +16,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to articles_path
     else
+      @articles = Article.all.order("created_at DESC")
       render :index
     end
   end

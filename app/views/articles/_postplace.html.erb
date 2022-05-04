@@ -5,14 +5,16 @@
     </div>
     <div class="d-flex flex-column">
       <div><%= article.user.name %></div>
-      <div><%= article.content %></div>
-      <div>
-        <% if user_signed_in? %>
-          <%= link_to article_path(article), method: :delete do %>
+      <%= link_to article_path(article) do %>
+        <div><%= article.content %></div>
+      <% end %>
+      <%= link_to article_path(article) , method: :delete do %>
+        <div>
+          <% if user_signed_in? %>
             <i class="fa-solid fa-trash"></i>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

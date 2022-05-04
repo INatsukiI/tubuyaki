@@ -1,0 +1,29 @@
+<div class="container px-2 pb-2" >
+  <div class="row">
+    <%= render '/layouts/leftcontents' %>
+    <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
+      <div class="border-bottom border-secondary">
+        <div class="p-4 d-flex">
+          <div class="pr-3">
+            <%= link_to  'javascript:history.back()' do %>
+              <i class="fa-lg fa-solid fa-arrow-left-long"></i>
+            <% end %>
+          </div>
+          <div>
+            <h4>他のユーザー</h4>
+          </div>
+        </div>
+      </div>
+      <% @users.each do |user| %>
+        <% if user != current_user %>
+          <div class="d-flex flex-row border border-2 rounded-2 mb-2">
+            <div class="p-3">
+              <%= link_to image_tag(user.get_profile_image(48,48)),user_path(user) %>
+            </div>
+            <div><%= user.name %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

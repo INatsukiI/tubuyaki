@@ -1,0 +1,40 @@
+<div class="container px-2 pb-2" >
+  <div class="row">
+    <%= render '/layouts/leftcontents' %>
+    <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
+      <div class="border-bottom border-secondary">
+        <div class="p-4 d-flex">
+          <div class="pr-3">
+            <%= link_to  'javascript:history.back()'  do %>
+              <i class="fa-lg fa-solid fa-arrow-left-long"></i>
+            <% end %>
+          </div>
+          <div>
+            <h4>Tubuyaki</h4>
+          </div>
+        </div>
+        <div class="d-flex flex-row mb-2">
+          <div class="p-3">
+            <%= link_to image_tag(@article.user.get_profile_image(48,48)),user_path(@article.user) %>
+          </div>
+          <div class="d-flex flex-column">
+            <%= link_to user_path(@article.user) do %>
+              <div><%= @article.user.name %></div>
+            <% end %>
+              <div><%= @article.content %></div>
+            <%= link_to article_path(@article) ,method: :delete do %>
+              <div>
+                <% if user_signed_in? %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      Column
+    </div>
+  </div>
+</div>

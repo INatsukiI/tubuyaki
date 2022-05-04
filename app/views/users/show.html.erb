@@ -5,7 +5,7 @@
       <div class="border-bottom border-secondary">
         <div class="p-4 d-flex">
           <div class="pr-3">
-            <%= link_to  articles_path  do %>
+            <%= link_to  'javascript:history.back()' do %>
               <i class="fa-lg fa-solid fa-arrow-left-long"></i>
             <% end %>
           </div>
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="col p-2">
-        <% if @articles.count == 0 %>
+        <% if @articles.count == 0 && @user == current_user %>
           <h4>何かつぶやいてみよう！</h4>
         <% else %>
           <%= render 'articles/postplace' ,articles: @articles %>
