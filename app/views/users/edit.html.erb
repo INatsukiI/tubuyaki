@@ -1,0 +1,28 @@
+<div class="container px-2 pb-2" >
+  <div class="row">
+    <%= render '/layouts/leftcontents' %>
+    <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
+      <div class="px-3 pt-4">
+        <h3>プロフィール編集</h3>
+        <%= form_with model: @user do |f| %>
+          <div class="form-group">
+            <label for="user_name">Name</label><br>
+            <%= f.text_field :name, id:"user_name" ,class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label for="user_image">Image</label><br>
+            <%= f.file_field :profile_image, accept:"image/*" %>
+          </div>
+          <div class="form-group">
+            <label for="user_introduction">Introduction</label><br>
+            <%= f.text_area :introduction, id:"user_introduction" ,class: "form-control" %>
+          </div>
+          <%= f.submit "Save" ,class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col">
+      Column
+    </div>
+  </div>
+</div>
