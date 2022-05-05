@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_user, only: [:edit]
 
   def index
     @users = User.all
   end
+
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.order("created_at DESC")
@@ -25,5 +28,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def check_user
+    @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to articles_path
+      end
   end
 end

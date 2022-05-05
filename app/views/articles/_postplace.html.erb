@@ -8,10 +8,13 @@
       <%= link_to article_path(article) do %>
         <div><%= article.content %></div>
       <% end %>
-      <%= link_to article_path(article) , method: :delete do %>
-        <div>
-          <% if user_signed_in? %>
-            <i class="fa-solid fa-trash"></i>
+      <% if current_user == article.user %>
+        <div class="d-flex">
+          <%= link_to article_path(article) , method: :delete do %>
+            <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
+          <% end %>
+          <%= link_to edit_article_path(article) do %>
+            <div class="pr-2"><i class="fa-solid fa-pen-to-square"></i></div>
           <% end %>
         </div>
       <% end %>

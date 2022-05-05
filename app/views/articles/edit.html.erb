@@ -1,0 +1,20 @@
+<div class="container px-2 pb-2" >
+  <div class="row">
+    <%= render '/layouts/leftcontents' %>
+    <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
+      <div class="px-3 pt-4">
+        <h3>投稿記事編集</h3>
+        <%= form_with model: @article do |f| %>
+          <div class="form-group">
+            <label for="article_content">content</label><br>
+            <%= f.text_area :content, id:"article_conten" ,class: "form-control" %>
+          </div>
+          <%= f.submit "Save" ,class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col">
+      <%= render 'layouts/error' , obj: @article %>
+    </div>
+  </div>
+</div>
