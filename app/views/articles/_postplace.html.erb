@@ -12,7 +12,7 @@
         <%= link_to article_path(article) do %>
           <div class="pr-2"><i class="fa-solid fa-comment"></i><%= article.article_comments.count %></div>
         <% end %>
-        <div id="likes_buttons_<%= post.id %>">
+        <div class="likes_buttons_<%= article.id %>">
           <%= render 'likes/like', article: article %>
          </div>
         <% if current_user == article.user %>

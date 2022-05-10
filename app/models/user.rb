@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :article_comments, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
+
 
 
   validates :name, uniqueness: true, length: {minimum: 2, maximum: 20}
@@ -23,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def liked_by?(article_id)
-    likes.where(article_id: article.id).exists?
+    likes.where(article_id: article_id).exists?
   end
 
 

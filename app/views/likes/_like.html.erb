@@ -1,7 +1,15 @@
-<% if user_signed_in? %>
- <% if current_user.liked_by?(article.id) %>
-   <td><%= link_to 'いいねを外す', article_likes_path(article), method: :DELETE, remote: true %> <%= post.likes.count %></td>
- <% else %>
-   <td><%= link_to 'いいね', article_likes_path(article), method: :POST, remote: true %> <%= post.likes.count %></td>
+ <% if user_signed_in? %>
+   <% if current_user.liked_by?(article.id) %>
+     <td>
+       <%= link_to article_likes_path(article), method: :DELETE, remote: true do %>
+         <i class="fa fa-heart unlike-btn"></i><%= article.likes.count %>
+       <% end %>
+     </td>
+  <% else %>
+     <td>
+       <%= link_to article_likes_path(article), method: :POST, remote: true do %>
+         <i class="fa fa-heart like-btn"></i><%= article.likes.count %>
+       <% end %>
+     </td>
+   <% end %>
  <% end %>
-<% end %>

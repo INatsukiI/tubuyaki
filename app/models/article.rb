@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   has_many :article_comments, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   validates :content, presence: true, length: { in: 1..20 }
 end
