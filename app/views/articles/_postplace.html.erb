@@ -8,16 +8,22 @@
       <%= link_to article_path(article) do %>
         <div><%= article.content %></div>
       <% end %>
-      <% if current_user == article.user %>
-        <div class="d-flex">
+      <div class="d-flex">
+        <%= link_to article_path(article) do %>
+          <div class="pr-2"><i class="fa-solid fa-comment"></i><%= article.article_comments.count %></div>
+        <% end %>
+        <div id="likes_buttons_<%= post.id %>">
+          <%= render 'likes/like', article: article %>
+         </div>
+        <% if current_user == article.user %>
           <%= link_to article_path(article) , method: :delete do %>
             <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
           <% end %>
           <%= link_to edit_article_path(article) do %>
             <div class="pr-2"><i class="fa-solid fa-pen-to-square"></i></div>
           <% end %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

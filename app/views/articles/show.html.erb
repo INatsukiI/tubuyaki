@@ -13,6 +13,7 @@
             <h4>Tubuyaki</h4>
           </div>
         </div>
+
         <div class="d-flex flex-row mb-2">
           <div class="p-3">
             <%= link_to image_tag(@article.user.get_profile_image(48,48)),user_path(@article.user) %>
@@ -35,7 +36,44 @@
             <% end %>
           </div>
         </div>
+
       </div>
+      <div class="p-3">
+        <% @comments.each do |comment| %>
+          <div class="d-flex flex-row mb-2">
+            <div class="p-3">
+              <%= link_to image_tag(comment.user.get_profile_image(48,48)),user_path(comment.user) %>
+            </div>
+            <div class="d-flex flex-column">
+              <%= link_to user_path(comment.user) do %>
+                <div><%= comment.user.name %></div>
+              <% end %>
+              <div><%= comment.comment %></div>
+
+              <% if current_user == comment.user %>
+                <div class="d-flex">
+                  <%= link_to article_article_comment_path(comment.article.id, comment.id) , method: :delete do %>
+                    <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="p-3">
+        <h3>コメントフォーム</h3>
+        <%= form_with model: [@article, @comment] do |f| %>
+          <div class="form-group">
+            <%= f.text_area :comment , class: "form-control" %>
+          </div>
+          <div>
+            <%= f.submit "送信" ,class: "btn btn-outline-primary" %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
     <div class="col">
       Column
