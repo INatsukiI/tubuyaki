@@ -13,6 +13,19 @@
             <h4><%= @user.name %></h4>
             <p><%= @articles.count %> つぶやき</p>
           </div>
+          <div>
+            <%= link_to followers_user_path(@user.id) do %>
+              <a>フォロワー<%= user.followers.count %>人</a>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to following_user_path(@user.id) do %>
+              <a>フォロー<%= user.followers.count %>人</a>
+            <% end %>
+          </div>
+          <div>
+            <%= render "follow_form" %>
+          </div>
         </div>
         <div class="mx-3 mb-1 d-flex justify-content-between">
           <div>

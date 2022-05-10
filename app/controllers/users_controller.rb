@@ -23,6 +23,21 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+  
+  #フォロー機能
+  def following
+    #@userがフォローしているユーザー
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render :show
+  end
+
+  def followers
+    #@userをフォローしているユーザー
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render :show
+  end
 
   private
 
