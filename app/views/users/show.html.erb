@@ -11,27 +11,31 @@
           </div>
           <div>
             <h4><%= @user.name %></h4>
-            <p><%= @articles.count %> つぶやき</p>
           </div>
-          <div>
-            <%= link_to followers_user_path(@user.id) do %>
-              <a>フォロワー<%= user.followers.count %>人</a>
-            <% end %>
-          </div>
-          <div>
-            <%= link_to following_user_path(@user.id) do %>
-              <a>フォロー<%= user.followers.count %>人</a>
-            <% end %>
-          </div>
-          <div>
-            <%= render "follow_form" %>
+          <div class="pl-4 d-flex justify-content-end">
+            <div class="pl-2">
+              <%= @articles.count %> つぶやき
+            </div>
+            <div class="pl-2">
+              <%= link_to user_followers_path(@user.id) do %>
+                フォロワー<%= @user.followers.count %>人
+              <% end %>
+            </div>
+            <div class="pl-2">
+              <%= link_to user_followings_path(@user.id) do %>
+                フォロー<%= @user.followings.count %>人
+              <% end %>
+            </div>
+            <div>
+              <%= render "follow_form", user: @user %>
+            </div>
           </div>
         </div>
         <div class="mx-3 mb-1 d-flex justify-content-between">
           <div>
             <%= image_tag(@user.get_profile_image(133,133)) %>
           </div>
-          <div class="pt-4 ml-4">
+          <div class="p-4 ml-4">
             <%= link_to  edit_user_path(@user), class: "border rounded-pill p-2" do %>
               プロフィール編集
             <% end %>
