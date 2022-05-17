@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:edit]
+  before_action :set_q, only: [:index, :search]
 
   def index
     @article = Article.new
@@ -45,6 +46,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  #記事検索機能のsarchアクション
+  def search
+    @results = @q.result
+  end
+
   private
 
   def article_params
@@ -56,5 +62,9 @@ class ArticlesController < ApplicationController
       unless @article.user == current_user
         redirect_to articles_path
       end
+  end
+
+  def set_q
+    @q = Article.ransack(params[:id])
   end
 end

@@ -27,6 +27,12 @@
     </div>
     <div class="col">
       <%= render 'layouts/error' , obj: @article %>
+      <%= search_form_for @q, url: search_articles_path do |f| %>
+        <%= f.label :title_cont, '記事検索' %>
+        <%= f.text_field :title_cont %>
+        <br>
+        <%= f.submit '検索' %>
+      <% end %>
     </div>
   </div>
 </div>
