@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:edit]
-  before_action :set_q, only: [:index, :search]
+  #before_action :set_q, only: [:index, :search]
+  before_action :get_article, only: [:index]
 
   def index
-    @article = Article.new
-    @articles = Article.all.order("created_at DESC")
+    #@article = Article.new
+    #@articles = Article.all.order("created_at DESC")
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(distinct: true)
   end
 
   def show
@@ -48,7 +51,9 @@ class ArticlesController < ApplicationController
 
   #記事検索機能のsarchアクション
   def search
-    @results = @q.result
+    @q = Article.ransack(params[:q])
+    @articles = @q.result(distinct: true)
+    @article = Article.new
   end
 
   private
@@ -64,7 +69,8 @@ class ArticlesController < ApplicationController
       end
   end
 
-  def set_q
-    @q = Article.ransack(params[:id])
+  def get_article
+    @article = Article.new
+    @articles = Article.all.order("created_at DESC")
   end
 end
