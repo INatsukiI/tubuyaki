@@ -49,14 +49,20 @@
                 <div><%= comment.user.name %></div>
               <% end %>
               <div><%= comment.comment %></div>
-
-              <% if current_user == comment.user %>
-                <div class="d-flex">
+              <div class="d-flex">
+                <% if current_user == comment.user %>
+                  <div class="likes_buttons_<%= comment.article.id %>">
+                    <%= render 'likes/like', article: comment.article %>
+                  </div>
                   <%= link_to article_article_comment_path(comment.article.id, comment.id) , method: :delete do %>
                     <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
                   <% end %>
-                </div>
-              <% end %>
+                  <!--コメントのeditにするように変更する-->
+                  <%= link_to edit_article_article_comment_path(comment.article.id, comment.id) do %>
+                    <div class="pr-2"><i class="fa-solid fa-pen-to-square"></i></div>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

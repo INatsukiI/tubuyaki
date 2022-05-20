@@ -1,4 +1,8 @@
 class ArticleCommentsController < ApplicationController
+  #update文を追加する
+  def edit
+    @comment = ArticleComment.find(params[:id])
+  end
 
   def create
     @article = Article.find(params[:article_id])
