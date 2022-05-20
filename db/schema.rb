@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2022_05_10_081945) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

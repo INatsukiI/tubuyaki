@@ -1,14 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_user, only: [:edit]
-  #before_action :set_q, only: [:index, :search]
   before_action :get_article, only: [:index]
 
   def index
     #@article = Article.new
     #@articles = Article.all.order("created_at DESC")
     @q = Article.ransack(params[:q])
-    @articles = @q.result(distinct: true)
+    @articles = @q.result(distinct: true).order("created_at DESC")
   end
 
   def show
@@ -24,12 +23,13 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
-
     if @article.save
       flash[:notice] = "You have created book successfully."
       redirect_to articles_path
     else
-      @articles = Article.all.order("created_at DESC")
+      #@articles = Article.all.order("created_at DESC")
+      @q = Article.ransack(params[:q])
+      @articles = @q.result(distinct: true).order("created_at DESC")
       render :index
     end
   end
@@ -49,17 +49,10 @@ class ArticlesController < ApplicationController
     end
   end
 
-  #記事検索機能のsarchアクション
-  def search
-    @q = Article.ransack(params[:q])
-    @articles = @q.result(distinct: true)
-    @article = Article.new
-  end
-
   private
 
   def article_params
-    params.require(:article).permit(:content)
+    params.require(:article).permit(:content, :image)
   end
 
   def check_user

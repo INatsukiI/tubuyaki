@@ -9,5 +9,5 @@ class LikesController < ApplicationController
     @article = Article.find(params[:article_id])
     Like.find_by(user_id: current_user.id, article_id: @article.id).destroy
   end
-
+  
 end

@@ -19,17 +19,19 @@
             </div>
           <% end %>
         </div>
+        <div>
+          <%= render 'layouts/error' , obj: @article %>
+        </div>
       </div>
       <div class="col p-2">
         <%= render 'postplace' ,articles: @articles %>
       </div>
 
     </div>
-    <div class="col">
-      <%= render 'layouts/error' , obj: @article %>
+    <div class="col-2 p-2">
       <%= search_form_for @q, url: articles_path do |f| %>
-        <%= f.label :title_or_content, '記事検索' %>
-        <%= f.text_field :title_or_content_cont %>
+        <%= f.label :user_name_or_content, '記事検索' %>
+        <%= f.text_field :user_name_or_content_cont %>
         <br>
         <%= f.submit '検索' %>
       <% end %>

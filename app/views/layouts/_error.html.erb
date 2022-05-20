@@ -1,10 +1,12 @@
 <% if obj.errors.any? %>
-  <h3>エラー</h3>
-  <div class = "alert">
-    <ul>
-      <% obj.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <div class="p-2">
+    <h5 class="text-danger">投稿エラー</h5>
+    <div>
+      <ul>
+        <% obj.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 <% end %>

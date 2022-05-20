@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
   resources :articles, only: [:index, :show, :edit, :create, :destroy, :update] do
-    collection do
-      get 'search'
-    end
     resources :article_comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
   end
