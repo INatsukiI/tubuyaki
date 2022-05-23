@@ -57,7 +57,6 @@
                   <%= link_to article_article_comment_path(comment.article.id, comment.id) , method: :delete do %>
                     <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
                   <% end %>
-                  <!--コメントのeditにするように変更する-->
                   <%= link_to edit_article_article_comment_path(comment.article.id, comment.id) do %>
                     <div class="pr-2"><i class="fa-solid fa-pen-to-square"></i></div>
                   <% end %>

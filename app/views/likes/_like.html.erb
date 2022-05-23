@@ -1,15 +1,15 @@
  <% if user_signed_in? %>
    <% if current_user.liked_by?(article.id) %>
-     <td>
+     <div class="pr-2">
        <%= link_to article_likes_path(article), method: :DELETE, remote: true do %>
          <i class="fa fa-heart unlike-btn"></i><%= article.likes.count %>
        <% end %>
-     </td>
+     </div>
   <% else %>
-     <td>
+     <div class="pr-2">
        <%= link_to article_likes_path(article), method: :POST, remote: true do %>
          <i class="fa fa-heart like-btn"></i><%= article.likes.count %>
        <% end %>
-     </td>
+     </div>
    <% end %>
  <% end %>

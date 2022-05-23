@@ -4,7 +4,7 @@
     <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
       <div class="px-3 pt-4">
         <h3>投稿記事編集</h3>
-        <%= form_with model: @comment do |f| %>
+        <%= form_with model: [@article, @comment] do |f| %>
           <div class="form-group">
             <label for="article_content">content</label><br>
             <%= f.text_area :comment,class: "form-control" %>

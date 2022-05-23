@@ -1,0 +1,40 @@
+<div class="container px-2 pb-2" >
+  <div class="row">
+    <%= render '/layouts/leftcontents' %>
+    <div class="col-7 p-0 border-right border-secondary border-left border-secondary" style="height: 1000px;">
+      <div class="border-bottom border-secondary">
+        <div class="p-4 d-flex">
+          <div class="pr-3">
+            <%= link_to  'javascript:history.back()'  do %>
+              <i class="fa-lg fa-solid fa-arrow-left-long"></i>
+            <% end %>
+          </div>
+          <div>
+            <h4>Tubuyaki</h4>
+          </div>
+        </div>
+      </div>
+      <% if @users.count == 0 %>
+        <h4>現在フォローされているユーザーはいません</h4>
+      <% else %>
+        <h4>フォローされているユーザー一覧</h4>
+        <div class="d-flex flex-row mb-2">
+          <% @users.each do |user| %>
+            <div class="p-3">
+              <%= link_to image_tag(user.get_profile_image(48,48)),user_path(user) %>
+            </div>
+            <div class="p-3">
+              <%= link_to user_path(user) do %>
+                <div><%= user.name %></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col">
+      Column
+    </div>
+  </div>
+</div>

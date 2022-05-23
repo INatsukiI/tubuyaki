@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.hosts << "1964aefe1082495d95d127af093f7a2e.vfs.cloud9.us-east-1.amazonaws.com"
+  config.hosts << "908beb4820ed47399fa9dc9aaa89e5cc.vfs.cloud9.us-east-1.amazonaws.com"
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development

@@ -1,7 +1,7 @@
 class ArticleCommentsController < ApplicationController
-  #update文を追加する
   def edit
     @comment = ArticleComment.find(params[:id])
+    @article = Article.find(params[:article_id])
   end
 
   def create
@@ -17,6 +17,17 @@ class ArticleCommentsController < ApplicationController
     @comment = ArticleComment.find(params[:id])
     @comment.destroy
     redirect_to article_path(@article.id)
+  end
+
+  def update
+    @comment = ArticleComment.find(params[:id])
+    if @comment.update(comment_params)
+      redirect_to article_path(@comment.article.id)
+    else
+      #バリデーションをつけてもう一度確認する
+      render "articles/show"
+    end
+
   end
 
   private
