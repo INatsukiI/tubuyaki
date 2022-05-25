@@ -11,10 +11,17 @@
           </div>
           <%= f.submit "Save" ,class: "btn btn-secondary" %>
         <% end %>
+        <% if flash[:alert] %>
+          <div class="mt-2 p-2 border border-danger">
+            <h5 class="text-danger">投稿エラー</h5>
+            <div>
+              <%= flash[:alert] %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="col">
-      <%= render 'layouts/error' , obj: @comment %>
     </div>
   </div>
 </div>

@@ -8,8 +8,13 @@ class ArticleCommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.article_comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
-    redirect_to article_path(@article.id)
+
+    if @comment.save
+      redirect_to article_path(@article.id)
+    else
+      flash[:alert] = "Comment can't be blank"
+      redirect_to article_path(@article.id)
+    end
   end
 
   def destroy
@@ -24,8 +29,8 @@ class ArticleCommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to article_path(@comment.article.id)
     else
-      #バリデーションをつけてもう一度確認する
-      render "articles/show"
+      flash[:alert] = "Comment can't be blank"
+      redirect_to edit_article_article_comment_path(@comment.article.id, @comment.id)
     end
 
   end

@@ -24,7 +24,6 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
-      flash[:notice] = "You have created book successfully."
       redirect_to articles_path
     else
       #@articles = Article.all.order("created_at DESC")

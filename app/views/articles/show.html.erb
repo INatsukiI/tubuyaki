@@ -54,7 +54,7 @@
                   <div class="likes_buttons_<%= comment.article.id %>">
                     <%= render 'likes/like', article: comment.article %>
                   </div>
-                  <%= link_to article_article_comment_path(comment.article.id, comment.id) , method: :delete do %>
+                  <%= link_to article_article_comment_path(comment.article.id, comment.id), method: :delete do %>
                     <div class="pr-2"><i class="fa-solid fa-trash"></i></div>
                   <% end %>
                   <%= link_to edit_article_article_comment_path(comment.article.id, comment.id) do %>
@@ -73,8 +73,16 @@
           <div class="form-group">
             <%= f.text_area :comment , class: "form-control" %>
           </div>
-          <div>
+          <div class="pb-2">
             <%= f.submit "送信" ,class: "btn btn-outline-primary" %>
+          </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="p-2 border border-danger">
+            <h5 class="text-danger">投稿エラー</h5>
+            <div>
+              <%= flash[:alert] %>
+            </div>
           </div>
         <% end %>
       </div>
