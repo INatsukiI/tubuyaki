@@ -14,6 +14,10 @@ class User < ApplicationRecord
   # 一覧画面で使う
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  
+  #dm機能アソシエーション
+  has_many :entries , dependent: :destroy
+  has_many :messages, dependent: :destroy
 
 
 
