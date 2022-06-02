@@ -43,16 +43,16 @@
         </div>
         <div>
           <% unless @user.id == current_user.id %>
-            <% if @room_bool == true %>
-              <%= link_to rooms_path do %>
-                <i class="fa-solid fa-message"></i>
-              <% end %>
-            <% else %>
-              <%= form_with model: @room do |f| %>
-                <%= fields_for @entry do |r| %>
-                  <%= r.hidden_field :user_id, value: @user.id %>
+            <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+              <% if @room_bool == true %>
+                <%= link_to "チャットへ" ,room_path(@room_id) %>
+              <% else %>
+                <%= form_with model: @room do |f| %>
+                  <%= fields_for @entry do |r| %>
+                    <%= r.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "チャットを始める" %>
                 <% end %>
-                <%= f.submit "チャットを始める" %>
               <% end %>
             <% end %>
           <% end %>
