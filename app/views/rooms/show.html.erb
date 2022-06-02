@@ -1,13 +1,11 @@
-#レイアウトなどに関してはまだ未実装
+<!--レイアウトなどに関してはまだ未実装-->
 <% if @messages.present? %>
   <% @messages.each do |m| %>
     <div class="chat-box">
       <div class="chat-face">
-        <%= image_tag m.user.avatar, class: "user-image" %>
+        <%= image_tag m.user.get_profile_image(40,40) %>
       </div>
-      <div class="chat-hukidashi"> <strong><%= m.content %></strong> <br>
-        <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
-      </div>
+      <div> <strong><%= m.content %></strong><br></div>
     </div>
   <% end %>
 <% end %>
