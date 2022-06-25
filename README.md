@@ -1,24 +1,16 @@
-# README
+# このリポジトリについて
+約一か月で個人製作したTwitterのクローンアプリTubuyakiです.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 主な使用技術
+Ruby 2.6.3  
+Ruby on Rails 6.1.5  
+Sqlite3 3.1.17  
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 機能一覧
+・ユーザー登録、ログイン機能(devise)  
+・投稿機能  
+・いいね機能(非同期　Ajax)  
+・コメント機能  
+・フォロー機能  
+・検索機能(ransack)  
+・DM機能  
